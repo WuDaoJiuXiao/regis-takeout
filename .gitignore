@@ -1,0 +1,6 @@
+# Project exclude paths
+/target/
+.idea
+regis-takeout.iml
+out/
+/src/test/
