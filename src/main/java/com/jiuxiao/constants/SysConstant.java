@@ -1,0 +1,18 @@
+package com.jiuxiao.constants;
+
+/**
+ * 项目常量类
+ * @Author: 悟道九霄
+ * @Date: 2022年08月01日 10:34
+ * @Version: 1.0.0
+ */
+public class SysConstant {
+
+    public static final String USER_NOT_EXIST = "用户不存在";
+
+    public static final String PASSWORD_ERROR = "登录密码错误";
+
+    public static final String USER_IS_BAN = "该用户已被封禁";
+
+    public static final String USER_LOGOUT_SUCCESS = "用户注销成功";
+}

@@ -2,6 +2,7 @@ package com.jiuxiao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
  * 项目主启动类
@@ -10,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: 1.0.0
  */
 @SpringBootApplication
-//@MapperScan("com.jiuxiao.mapper")
+@ServletComponentScan
 public class RegisApplication {
 
     public static void main(String[] args) {
