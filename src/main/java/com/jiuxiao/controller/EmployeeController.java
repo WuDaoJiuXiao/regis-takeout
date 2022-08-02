@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
  * 员工控制器
@@ -77,4 +78,29 @@ public class EmployeeController {
         request.getSession().removeAttribute("employee");
         return RespBean.success(SysConstant.USER_LOGOUT_SUCCESS);
     }
+
+    /**
+     * @param employee
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 新增员工
+     * @date 2022/8/2 10:03
+     */
+    @PostMapping
+    public RespBean<String> save(HttpServletRequest request, @RequestBody Employee employee) {
+        //初始密码为 123456
+        employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
+
+        //创建时间、修改时间一致，均为当前时间
+        employee.setCreateTime(LocalDateTime.now());
+        employee.setUpdateTime(LocalDateTime.now());
+
+        //创建人、更新人都是当前登录的用户
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        employee.setCreateUser(empId);
+        employee.setUpdateUser(empId);
+
+        employeeService.save(employee);
+        return RespBean.success(SysConstant.ADD_USER_SUCCESS);
+    }
+
 }

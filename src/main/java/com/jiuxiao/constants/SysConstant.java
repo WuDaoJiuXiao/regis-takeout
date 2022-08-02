@@ -15,4 +15,8 @@ public class SysConstant {
     public static final String USER_IS_BAN = "该用户已被封禁";
 
     public static final String USER_LOGOUT_SUCCESS = "用户注销成功";
+
+    public static final String ADD_USER_SUCCESS = "新增用户成功";
+
+    public static final String UNKNOWN_ERROR = "未知错误";
 }
