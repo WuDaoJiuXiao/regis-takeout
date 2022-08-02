@@ -1,16 +1,15 @@
 package com.jiuxiao.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jiuxiao.commons.RespBean;
 import com.jiuxiao.constants.SysConstant;
 import com.jiuxiao.pojo.Employee;
 import com.jiuxiao.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -103,4 +102,25 @@ public class EmployeeController {
         return RespBean.success(SysConstant.ADD_USER_SUCCESS);
     }
 
+    /**
+     * @param page
+     * @param pageSize
+     * @param name
+     * @return: com.jiuxiao.commons.RespBean<com.baomidou.mybatisplus.extension.plugins.pagination.Page>
+     * @decription 员工信息分页查询
+     * @date 2022/8/2 15:29
+     */
+    @GetMapping("/page")
+    public RespBean<Page> page(int page, int pageSize, String name) {
+        Page pageInfo = new Page(page, pageSize);
+
+        LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
+        //过滤条件
+        queryWrapper.like(StringUtils.isNotEmpty(name), Employee::getName, name);
+        //排序条件
+        queryWrapper.orderByAsc(Employee::getUpdateTime);
+        employeeService.page(pageInfo, queryWrapper);
+
+        return RespBean.success(pageInfo);
+    }
 }
