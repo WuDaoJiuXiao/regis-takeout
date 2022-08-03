@@ -7,7 +7,6 @@ import com.jiuxiao.commons.RespBean;
 import com.jiuxiao.constants.SysConstant;
 import com.jiuxiao.pojo.Employee;
 import com.jiuxiao.service.EmployeeService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,6 @@ import java.time.LocalDateTime;
  * @Date: 2022年08月01日 9:46
  * @Version: 1.0.0
  */
-@Slf4j
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -122,5 +120,36 @@ public class EmployeeController {
         employeeService.page(pageInfo, queryWrapper);
 
         return RespBean.success(pageInfo);
+    }
+
+    /**
+     * @param request
+     * @param employee
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 更新员工信息
+     * @date 2022/8/3 10:11
+     */
+    @PutMapping
+    public RespBean<String> update(HttpServletRequest request, @RequestBody Employee employee) {
+        employee.setUpdateUser((Long) request.getSession().getAttribute("employee"));
+        employee.setUpdateTime(LocalDateTime.now());
+
+        employeeService.updateById(employee);
+        return RespBean.success(SysConstant.USER_INFO_UPDATE_SUCCESS);
+    }
+
+    /**
+     * @param id
+     * @return: com.jiuxiao.commons.RespBean<com.jiuxiao.pojo.Employee>
+     * @decription 根据员工 id 获取员工信息
+     * @date 2022/8/3 15:02
+     */
+    @GetMapping("/{id}")
+    public RespBean<Employee> getById(@PathVariable Long id) {
+        Employee employee = employeeService.getById(id);
+        if (null != employee){
+            return RespBean.success(employee);
+        }
+        return RespBean.error(SysConstant.NOT_QUERY_USER_INFO);
     }
 }
