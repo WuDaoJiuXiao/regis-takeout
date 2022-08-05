@@ -43,12 +43,36 @@ public class CategoryController {
      * @date 2022/8/5 15:13
      */
     @GetMapping("/page")
-    public RespBean<Page> page(int page, int pageSize){
+    public RespBean<Page> page(int page, int pageSize) {
         Page<Category> pageInfo = new Page<>(page, pageSize);
         LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
         //根据 sort 值进行升序排列
         queryWrapper.orderByAsc(Category::getSort);
         categoryService.page(pageInfo, queryWrapper);
         return RespBean.success(pageInfo);
+    }
+
+    /**
+     * @param id
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 根据 ID 删除分类
+     * @date 2022/8/5 20:09
+     */
+    @DeleteMapping
+    public RespBean<String> delete(Long id) {
+        categoryService.remove(id);
+        return RespBean.success(SysConstant.CATEGORY_DELETE_SUCCESS);
+    }
+
+    /**
+     * @param category
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 根据 ID 修改分类信息
+     * @date 2022/8/5 21:06
+     */
+    @PutMapping
+    public RespBean<String> update(@RequestBody Category category) {
+        categoryService.updateById(category);
+        return RespBean.success(SysConstant.CATEGORY_UPDATE_SUCCESS);
     }
 }

@@ -1,7 +1,7 @@
-package com.jiuxiao.exception;
+package com.jiuxiao.commons;
 
-import com.jiuxiao.commons.RespBean;
 import com.jiuxiao.constants.SysConstant;
+import com.jiuxiao.exception.CustomException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,5 +36,16 @@ public class GlobalExceptionHandler {
             return RespBean.error(resMsg);
         }
         return RespBean.error(SysConstant.UNKNOWN_ERROR);
+    }
+
+    /**
+     * @param e
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 自定义异常处理
+     * @date 2022/8/5 20:30
+     */
+    @ExceptionHandler(CustomException.class)
+    public RespBean<String> exceptionHandler(CustomException e) {
+        return RespBean.error(e.getMessage());
     }
 }

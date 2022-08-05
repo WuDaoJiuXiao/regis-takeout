@@ -25,4 +25,12 @@ public class SysConstant {
     public static final String NOT_QUERY_USER_INFO = "没有查询到员工信息";
 
     public static final String CATEGORY_SAVE_SUCCESS = "分类信息新增成功";
+
+    public static final String CATEGORY_DELETE_SUCCESS = "分类信息删除成功";
+
+    public static final String CATEGORY_DELETE_ERROR_WITH_DISH = "当前分类已经关联菜品，不能删除";
+
+    public static final String CATEGORY_DELETE_ERROR_WITH_SETMEAL = "当前分类已经关联套餐，不能删除";
+
+    public static final String CATEGORY_UPDATE_SUCCESS = "分类信息修改成功";
 }

@@ -1,17 +1,15 @@
 package com.jiuxiao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jiuxiao.pojo.Category;
+import com.jiuxiao.pojo.Setmeal;
 import org.springframework.stereotype.Service;
 
 /**
- * 分类业务层
+ * 套餐业务层接口
  * @Author: 悟道九霄
- * @Date: 2022/08/05 11:43
+ * @Date: 2022/08/05 20:01
  * @Version: 1.0.0
  */
 @Service
-public interface CategoryService extends IService<Category> {
-
-    void remove(Long id);
+public interface SetmealService extends IService<Setmeal> {
 }
