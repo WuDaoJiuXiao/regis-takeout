@@ -23,4 +23,6 @@ public class SysConstant {
     public static final String USER_INFO_UPDATE_SUCCESS = "用户信息修改成功";
 
     public static final String NOT_QUERY_USER_INFO = "没有查询到员工信息";
+
+    public static final String CATEGORY_SAVE_SUCCESS = "分类信息新增成功";
 }

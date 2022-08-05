@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
 
         if (message.contains("Duplicate entry")) {
             String[] s = message.split(" ");
-            String resMsg = "账号 " + s[2].substring(1, s[2].length() - 1) + " 已存在!";
+            String resMsg = s[2].substring(1, s[2].length() - 1) + " 已存在!";
             return RespBean.error(resMsg);
         }
         return RespBean.error(SysConstant.UNKNOWN_ERROR);

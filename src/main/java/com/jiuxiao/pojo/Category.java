@@ -8,39 +8,27 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 员工实体类
+ * 分类实体类
  * @Author: 悟道九霄
- * @Date: 2022年08月01日 9:28
+ * @Date: 2022年08月05日 11:16
  * @Version: 1.0.0
  */
 @Data
-public class Employee implements Serializable {
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** 员工 ID */
+    /* 分类 id */
     private Long id;
 
-    /** 员工账户名称，具有唯一性约束 */
-    private String username;
+    /* 1：菜品分类   2：套餐分类 */
+    private Integer type;
 
-    /** 员工姓名 */
+    /* 分类名称，具有唯一约束 */
     private String name;
 
-    /** 员工登录密码 */
-    private String password;
-
-    /** 员工电话号码 */
-    private String phone;
-
-    /** 员工性别 */
-    private String sex;
-
-    /** 员工工号 */
-    private String idNumber;
-
-    /** 员工账号状态 1：正常 2：封禁 */
-    private Integer status;
+    /* 分类顺序 */
+    private Integer sort;
 
     /** 创建时间 */
     @TableField(fill = FieldFill.INSERT)
