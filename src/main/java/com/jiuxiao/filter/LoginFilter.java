@@ -2,6 +2,7 @@ package com.jiuxiao.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.jiuxiao.commons.RespBean;
+import com.jiuxiao.tools.BaseContext;
 import com.jiuxiao.tools.RequestTools;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +47,9 @@ public class LoginFilter implements Filter {
         }
 
         //已经登录，直接放行
-        if (req.getSession().getAttribute("employee") != null){
+        Long empId = (Long) req.getSession().getAttribute("employee");
+        if (empId != null){
+            BaseContext.setCurrentId(empId);
             chain.doFilter(req, resp);
             return;
         }
