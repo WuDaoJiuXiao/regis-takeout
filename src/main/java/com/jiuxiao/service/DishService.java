@@ -1,6 +1,7 @@
 package com.jiuxiao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.jiuxiao.dto.DishDto;
 import com.jiuxiao.pojo.Dish;
 import org.springframework.stereotype.Service;
 
@@ -12,4 +13,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface DishService extends IService<Dish> {
+
+    void saveWithFlavor(DishDto dishDto);
 }

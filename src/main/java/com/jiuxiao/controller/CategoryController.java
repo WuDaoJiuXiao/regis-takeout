@@ -9,6 +9,7 @@ import com.jiuxiao.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 分类管理控制器
@@ -74,5 +75,23 @@ public class CategoryController {
     public RespBean<String> update(@RequestBody Category category) {
         categoryService.updateById(category);
         return RespBean.success(SysConstant.CATEGORY_UPDATE_SUCCESS);
+    }
+
+    /**
+     * @param category
+     * @return: com.jiuxiao.commons.RespBean<java.util.List<com.jiuxiao.pojo.Category>>
+     * @decription 根据传回 type 查询新增菜品页面的下拉框数据
+     * @date 2022/8/6 15:27
+     */
+    @GetMapping("/list")
+    public RespBean<List<Category>> list(Category category){
+        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+        //查询条件
+        queryWrapper.eq(category.getType() != null, Category::getType, category.getType());
+        //排序条件
+        queryWrapper.orderByAsc(Category::getSort).orderByDesc(Category::getUpdateTime);
+        List<Category> list = categoryService.list(queryWrapper);
+
+        return RespBean.success(list);
     }
 }
