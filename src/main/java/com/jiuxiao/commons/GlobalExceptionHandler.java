@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
@@ -47,5 +48,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     public RespBean<String> exceptionHandler(CustomException e) {
         return RespBean.error(e.getMessage());
+    }
+
+    /**
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 找不菜品图片异常处理
+     * @date 2022/8/7 10:30
+     */
+    @ExceptionHandler(FileNotFoundException.class)
+    public RespBean<String> exceptionHandler(FileNotFoundException e) {
+        String message = e.getMessage();
+
+        //若找不到菜品图片，显示找不到相关图片
+        if (message.contains("FileNotFoundException") && message.contains(".jpeg")){
+            return RespBean.error(SysConstant.NOT_FOUND_IMAGE);
+        }
+
+        return RespBean.error(SysConstant.UNKNOWN_ERROR);
     }
 }

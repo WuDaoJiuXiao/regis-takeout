@@ -199,6 +199,7 @@
 
           // 删除
           deleteHandle (type, id) {
+            console.log(typeof id)
             if (type === '批量' && id === null) {
               if (this.checkList.length === 0) {
                 return this.$message.error('请选择删除对象')

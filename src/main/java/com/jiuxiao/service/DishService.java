@@ -14,5 +14,44 @@ import org.springframework.stereotype.Service;
 @Service
 public interface DishService extends IService<Dish> {
 
+    /**
+     * @param dishDto
+     * @return: void
+     * @decription 新增菜品，同时添加风味信息
+     * @date 2022/8/7 9:59
+     */
     void saveWithFlavor(DishDto dishDto);
+
+    /**
+     * @param id
+     * @return: com.jiuxiao.dto.DishDto
+     * @decription 根据 ID 查询菜品及对应的口味信息
+     * @date 2022/8/7 9:58
+     */
+    DishDto getByIdWithFlavor(Long id);
+
+    /**
+     * @param dishDto
+     * @return: void
+     * @decription 修改菜品信息及其口味信息
+     * @date 2022/8/7 10:14
+     */
+    void updateWithFlavor(DishDto dishDto);
+
+    /**
+     * @param ids
+     * @return: void
+     * @decription 删除菜品信息
+     * @date 2022/8/7 10:48
+     */
+    void removeWithFlavor(String ids);
+
+    /**
+     * @param status
+     * @param ids
+     * @return: void
+     * @decription 修改菜品状态信息
+     * @date 2022/8/7 11:48
+     */
+    void updateStatus(Integer status, String ids);
 }

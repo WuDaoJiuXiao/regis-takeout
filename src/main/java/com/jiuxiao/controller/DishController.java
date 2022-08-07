@@ -78,7 +78,7 @@ public class DishController {
             Long categoryId = item.getCategoryId();
             //根据 id 查询分类对象
             Category category = categoryService.getById(categoryId);
-            if (category != null){
+            if (category != null) {
                 String categoryName = category.getName();
                 dishDto.setCategoryName(categoryName);
             }
@@ -88,5 +88,52 @@ public class DishController {
         dishDtoPage.setRecords(list);
 
         return RespBean.success(dishDtoPage);
+    }
+
+    /**
+     * @param id
+     * @return: com.jiuxiao.commons.RespBean<com.jiuxiao.dto.DishDto>
+     * @decription 根据 ID 获取菜品及口味信息
+     * @date 2022/8/7 9:56
+     */
+    @GetMapping("/{id}")
+    public RespBean<DishDto> get(@PathVariable Long id) {
+        DishDto dishDto = dishService.getByIdWithFlavor(id);
+        return RespBean.success(dishDto);
+    }
+
+    /**
+     * @param dishDto
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 修改菜品信息及其口味信息
+     * @date 2022/8/7 10:11
+     */
+    @PutMapping
+    public RespBean<String> update(@RequestBody DishDto dishDto) {
+        dishService.updateWithFlavor(dishDto);
+        return RespBean.success(SysConstant.UPDATE_DISH_SUCCESS);
+    }
+
+    /**
+     * @param ids
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 根据 ID 删除菜品
+     * @date 2022/8/7 10:42
+     */
+    @DeleteMapping
+    public RespBean<String> delete(String ids) {
+        dishService.removeWithFlavor(ids);
+        return RespBean.success(SysConstant.DELETE_DISH_SUCCESS);
+    }
+
+    /**
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 修改菜品状态信息
+     * @date 2022/8/7 11:48
+     */
+    @PostMapping("/status/{status}")
+    public RespBean<String> status(@PathVariable Integer status, String ids) {
+        dishService.updateStatus(status, ids);
+        return RespBean.success(SysConstant.UPDATE_DISH_STATUS_SUCCESS);
     }
 }

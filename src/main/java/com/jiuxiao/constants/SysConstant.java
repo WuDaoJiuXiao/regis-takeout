@@ -35,4 +35,12 @@ public class SysConstant {
     public static final String CATEGORY_UPDATE_SUCCESS = "分类信息修改成功";
 
     public static final String ADD_DISH_SUCCESS = "新增菜品成功";
+
+    public static final String UPDATE_DISH_SUCCESS = "修改菜品信息成功";
+
+    public static final String NOT_FOUND_IMAGE = "找不到项目配图";
+
+    public static final String DELETE_DISH_SUCCESS = "删除菜品信息成功";
+
+    public static final String UPDATE_DISH_STATUS_SUCCESS = "更新菜品状态成功";
 }
