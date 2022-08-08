@@ -9,39 +9,36 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 套餐实体类
+ * 套餐菜品关系实体类
  * @Author: 悟道九霄
- * @Date: 2022年08月05日 19:53
+ * @Date: 2022年08月07日 14:49
  * @Version: 1.0.0
  */
 @Data
-public class Setmeal implements Serializable {
+public class SetmealDish implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** 套餐 ID */
+    /** 套餐菜品关系 ID */
     private Long id;
 
-    /** 套餐所属的分类 ID */
-    private Long categoryId;
+    /** 套餐 ID */
+    private Long setmealId;
 
-    /** 套餐名 */
+    /** 菜品 ID */
+    private Long dishId;
+
+    /** 套餐名称 */
     private String name;
 
     /** 套餐价格 */
     private BigDecimal price;
 
-    /** 套餐状态 0:禁用 1:启用 */
-    private Integer status;
+    /** 菜品份数 */
+    private Integer copies;
 
-    /** 商品码 */
-    private String code;
-
-    /** 套餐描述 */
-    private String description;
-
-    /** 套餐配图 */
-    private String image;
+    /** 排序 */
+    private Integer sort;
 
     /** 创建时间 */
     @TableField(fill = FieldFill.INSERT)
@@ -59,5 +56,6 @@ public class Setmeal implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
+    /** 是否被删除 */
     private Integer isDeleted;
 }

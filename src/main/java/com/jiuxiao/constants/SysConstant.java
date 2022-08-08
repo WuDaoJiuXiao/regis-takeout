@@ -43,4 +43,14 @@ public class SysConstant {
     public static final String DELETE_DISH_SUCCESS = "删除菜品信息成功";
 
     public static final String UPDATE_DISH_STATUS_SUCCESS = "更新菜品状态成功";
+
+    public static final String ADD_SETMEAL_SUCCESS = "新增套餐成功";
+
+    public static final String SETMEAL_DELETE_SUCCESS = "套餐删除成功";
+
+    public static final String SETMEAL_NOT_ALLOWED_DELETE = "套餐正在销售中，不能删除";
+
+    public static final String UPDATE_SETMEAL_STATUS_SUCCESS = "更新套餐状态成功";
+
+    public static final String UPDATE_SETMEAL_SUCCESS = "套餐信息修改成";
 }

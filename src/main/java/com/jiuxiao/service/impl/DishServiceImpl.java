@@ -132,7 +132,7 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
     public void updateStatus(Integer status, String ids) {
         String[] idList = ids.split(",");
 
-        //防止用户无操作，要进行判断（比如菜品已经停售，用户要菜品再次停售）
+        //防止用户误操作，要进行判断（比如菜品已经停售，用户要菜品再次停售）
         for (String id : idList) {
             Dish dish = this.getById(id);
             //两者不相等的情况下，说明是正常操作，否则就是非法操作(停售时停售/启用时启用)

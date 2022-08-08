@@ -136,4 +136,23 @@ public class DishController {
         dishService.updateStatus(status, ids);
         return RespBean.success(SysConstant.UPDATE_DISH_STATUS_SUCCESS);
     }
+
+    /**
+     * @param dish
+     * @return: com.jiuxiao.commons.RespBean<java.util.List < com.jiuxiao.pojo.Dish>>
+     * @decription 根据套餐 ID 查询当前套餐下的菜品
+     * @date 2022/8/7 15:40
+     */
+    @GetMapping("/list")
+    public RespBean<List<Dish>> list(Dish dish) {
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+
+        queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
+        queryWrapper.eq(Dish::getStatus, 1);
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> dishes = dishService.list(queryWrapper);
+
+        return RespBean.success(dishes);
+    }
 }
