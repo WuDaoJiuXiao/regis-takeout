@@ -60,7 +60,7 @@ public class SysConstant {
 
     public static final String PHONE_CODE_SEND_ERROR = "手机验证码发送成功";
 
-    public static final String MOBILE_USER_LOGIN_SUCCESS = "移动端用户登录成功";
-
     public static final String MOBILE_USER_LOGIN_ERROR = "移动端用户登录失败";
+
+    public static final String GET_ADDRESS_ERROR = "获取地址失败";
 }
