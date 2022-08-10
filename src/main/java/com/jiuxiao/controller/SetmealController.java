@@ -141,4 +141,23 @@ public class SetmealController {
         setmealService.updateWithDish(setmealDto);
         return RespBean.success(SysConstant.UPDATE_SETMEAL_SUCCESS);
     }
+
+    /**
+     * @param setmeal
+     * @return: com.jiuxiao.commons.RespBean<java.util.List < com.jiuxiao.pojo.Setmeal>>
+     * @decription 根据套餐分类 ID 查询当前套餐下的菜品
+     * @date 2022/8/10 20:49
+     */
+    @GetMapping("/list")
+    public RespBean<List<Setmeal>> list(Setmeal setmeal) {
+        LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
+
+        queryWrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());
+        queryWrapper.eq(Setmeal::getStatus, 1);
+        queryWrapper.orderByDesc(Setmeal::getUpdateTime);
+
+        List<Setmeal> setmealList = setmealService.list(queryWrapper);
+
+        return RespBean.success(setmealList);
+    }
 }

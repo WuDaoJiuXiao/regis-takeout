@@ -7,6 +7,7 @@ import com.jiuxiao.constants.SysConstant;
 import com.jiuxiao.dto.DishDto;
 import com.jiuxiao.pojo.Category;
 import com.jiuxiao.pojo.Dish;
+import com.jiuxiao.pojo.DishFlavor;
 import com.jiuxiao.service.CategoryService;
 import com.jiuxiao.service.DishFlavorService;
 import com.jiuxiao.service.DishService;
@@ -140,11 +141,11 @@ public class DishController {
     /**
      * @param dish
      * @return: com.jiuxiao.commons.RespBean<java.util.List < com.jiuxiao.pojo.Dish>>
-     * @decription 根据套餐 ID 查询当前套餐下的菜品
+     * @decription 根据菜品分类 ID 查询当前分类下的菜品
      * @date 2022/8/7 15:40
      */
     @GetMapping("/list")
-    public RespBean<List<Dish>> list(Dish dish) {
+    public RespBean<List<DishDto>> list(Dish dish) {
         LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
 
         queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
@@ -153,6 +154,26 @@ public class DishController {
 
         List<Dish> dishes = dishService.list(queryWrapper);
 
-        return RespBean.success(dishes);
+        //移动端需要展示口味信息，返回对象应该为 DishDto
+        List<DishDto> dishDtoList = dishes.stream().map((item) -> {
+            DishDto dishDto = new DishDto();
+            BeanUtils.copyProperties(item, dishDto);
+            Long categoryId = item.getCategoryId();
+            //根据 id 查询分类对象
+            Category category = categoryService.getById(categoryId);
+            if (category != null) {
+                String categoryName = category.getName();
+                dishDto.setCategoryName(categoryName);
+            }
+            //获得当前菜品的 ID
+            Long dishId = item.getId();
+            LambdaQueryWrapper<DishFlavor> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(DishFlavor::getDishId, dishId);
+            List<DishFlavor> dishFlavorList = dishFlavorService.list(wrapper);
+            dishDto.setFlavors(dishFlavorList);
+            return dishDto;
+        }).collect(Collectors.toList());
+
+        return RespBean.success(dishDtoList);
     }
 }
