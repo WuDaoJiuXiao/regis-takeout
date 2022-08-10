@@ -26,6 +26,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
+        log.info("拦截到请求 -> " + req.getRequestURI());
 
         //获取请求的 URI
         String requestURI = req.getRequestURI();
@@ -35,6 +36,8 @@ public class LoginFilter implements Filter {
                 "/employee/logout",
                 "/backend/**",
                 "/front/**",
+                "/user/sendMsg",
+                "/user/login"
         };
 
         //判断本次请求是否需要被拦截
@@ -46,10 +49,18 @@ public class LoginFilter implements Filter {
             return;
         }
 
-        //已经登录，直接放行
+        //后台用户已经登录，直接放行
         Long empId = (Long) req.getSession().getAttribute("employee");
         if (empId != null){
             BaseContext.setCurrentId(empId);
+            chain.doFilter(req, resp);
+            return;
+        }
+
+        //移动端用户已经登录，直接放行
+        Long userId = (Long) req.getSession().getAttribute("user");
+        if (userId != null){
+            BaseContext.setCurrentId(userId);
             chain.doFilter(req, resp);
             return;
         }

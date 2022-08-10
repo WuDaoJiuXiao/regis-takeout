@@ -53,4 +53,14 @@ public class SysConstant {
     public static final String UPDATE_SETMEAL_STATUS_SUCCESS = "更新套餐状态成功";
 
     public static final String UPDATE_SETMEAL_SUCCESS = "套餐信息修改成";
+
+    public static final String ONLY_FOUR_OR_SIX_CODE = "只能生成4位或6位验证码";
+
+    public static final String PHONE_CODE_SEND_SUCCESS = "手机验证码发送成功";
+
+    public static final String PHONE_CODE_SEND_ERROR = "手机验证码发送成功";
+
+    public static final String MOBILE_USER_LOGIN_SUCCESS = "移动端用户登录成功";
+
+    public static final String MOBILE_USER_LOGIN_ERROR = "移动端用户登录失败";
 }

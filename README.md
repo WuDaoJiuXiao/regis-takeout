@@ -21,7 +21,7 @@
 
 ##### 1.5 套餐管理
 
-
+![image-20220808110736057](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220808110736057.png)
 
 ##### 1.6 订单管理
 
