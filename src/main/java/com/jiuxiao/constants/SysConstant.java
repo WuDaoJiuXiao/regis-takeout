@@ -63,4 +63,6 @@ public class SysConstant {
     public static final String MOBILE_USER_LOGIN_ERROR = "移动端用户登录失败";
 
     public static final String GET_ADDRESS_ERROR = "获取地址失败";
+
+    public static final String DELETE_SHOPPING_CART_SUCCESS = "清空购物车成功";
 }
