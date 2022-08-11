@@ -65,4 +65,10 @@ public class SysConstant {
     public static final String GET_ADDRESS_ERROR = "获取地址失败";
 
     public static final String DELETE_SHOPPING_CART_SUCCESS = "清空购物车成功";
+
+    public static final String ORDER_SUBMIT_SUCCESS = "订单提交成功";
+
+    public static final String SHOPPING_CART_EMPTY_DO_NOT_ORDERS = "购物车为空，不能下单";
+
+    public static final String ADDRESS_BOOK_EMPTY_DO_NOT_ORDERS = "派送地址为空，不能下单";
 }
