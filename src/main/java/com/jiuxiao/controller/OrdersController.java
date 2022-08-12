@@ -1,6 +1,7 @@
 package com.jiuxiao.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jiuxiao.commons.RespBean;
 import com.jiuxiao.constants.SysConstant;
@@ -12,6 +13,7 @@ import com.jiuxiao.service.OrderDetailService;
 import com.jiuxiao.service.OrdersService;
 import com.jiuxiao.tools.BaseContext;
 import org.springframework.beans.BeanUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -57,7 +59,7 @@ public class OrdersController {
      * @date 2022/8/11 17:01
      */
     @GetMapping("/userPage")
-    public RespBean<Page> page(int page, int pageSize) {
+    public RespBean<Page> userPage(int page, int pageSize) {
         Page<OrderDto> ordersPage = new Page<>(page, pageSize);
         Long userId = BaseContext.getCurrentId();
 
@@ -107,5 +109,48 @@ public class OrdersController {
     public RespBean<String> again(HttpServletResponse response) throws IOException {
         response.sendRedirect("/dish/list");
         return null;
+    }
+
+    /**
+     * @param page
+     * @param pageSize
+     * @param number
+     * @param beginTime
+     * @param endTime
+     * @return: com.jiuxiao.commons.RespBean<com.baomidou.mybatisplus.extension.plugins.pagination.Page>
+     * @decription 条件查询订单分页数据
+     * @date 2022/8/12 10:41
+     */
+    @GetMapping("/page")
+    public RespBean<Page> page(int page, int pageSize, String number, String beginTime, String endTime) {
+
+        Page<Orders> ordersPage = new Page<>(page, pageSize);
+        LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(!StringUtils.isEmpty(number), Orders::getNumber, number);
+        queryWrapper.between(beginTime != null && endTime != null && endTime.compareTo(beginTime) >= 0,
+                Orders::getOrderTime, beginTime, endTime);
+        List<Orders> ordersList = ordersService.list(queryWrapper);
+
+        ordersPage.setRecords(ordersList);
+        return RespBean.success(ordersPage);
+    }
+
+    /**
+     * @param orders
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 更新订单状态
+     * @date 2022/8/12 14:39
+     */
+    @PutMapping
+    public RespBean<String> updateStatus(@RequestBody Orders orders) {
+        Long ordersId = orders.getId();
+        Integer status = orders.getStatus();
+
+        LambdaUpdateWrapper<Orders> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(Orders::getId, ordersId);
+        updateWrapper.set(Orders::getStatus, status);
+
+        ordersService.update(updateWrapper);
+        return RespBean.success(SysConstant.ORDER_STATUS_UPDATE_SUCCESS);
     }
 }

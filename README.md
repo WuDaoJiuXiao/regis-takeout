@@ -25,11 +25,53 @@
 
 ##### 1.6 订单管理
 
+![image-20220812144309950](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144309950.png)
+
+#### 2 移动端页面展示
+
+##### 2.1 用户登录页
+
+![image-20220812144405656](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144405656.png)
+
+##### 2.2 菜品及套餐展示页面
+
+![image-20220812144609110](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144609110.png)
+
+##### 2.3 菜品规则选择页面
+
+![image-20220812144649335](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144649335.png)
+
+##### 2.3 购物车页面
+
+![image-20220812144718987](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144718987.png)
+
+##### 2.4 订单结算页面
+
+![image-20220812144849891](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144849891.png)
+
+##### 2.5 下单成功页面
+
+![image-20220812144903978](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144903978.png)
+
+##### 2.6 个人信息页面
+
+![image-20220812144928725](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144928725.png)
+
+##### 2.7 历史订单页面
+
+![image-20220812145022234](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812145022234.png)
+
+##### 2.8 地址管理页面
+
+![image-20220812144824950](https://my-pic-1309513254.cos.ap-shanghai.myqcloud.com//image-20220812144824950.png)
 
 
 
 
-#### 2 前端用户下单展示
+
+
+
+
 
 
 

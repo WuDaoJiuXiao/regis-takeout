@@ -9,6 +9,7 @@ import com.jiuxiao.mapper.OrdersMapper;
 import com.jiuxiao.pojo.*;
 import com.jiuxiao.service.*;
 import com.jiuxiao.tools.BaseContext;
+import com.jiuxiao.tools.StringTools;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,6 +92,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
 
         //向 orders 表设置相关数据
         orders.setId(orderId);
+        orders.setNumber(StringTools.getOrderNumber());
         orders.setOrderTime(LocalDateTime.now());
         orders.setCheckoutTime(LocalDateTime.now());
         orders.setStatus(2);

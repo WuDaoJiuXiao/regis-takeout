@@ -72,5 +72,7 @@ public class SysConstant {
 
     public static final String ADDRESS_BOOK_EMPTY_DO_NOT_ORDERS = "派送地址为空，不能下单";
 
-    public static final String USER_NOT_ORDER = "您还没有订单信息，快去选购吧";
+    public static final String USER_NOT_ORDER = "您还没有订单信息";
+
+    public static final String ORDER_STATUS_UPDATE_SUCCESS = "更新订单状态成功";
 }
