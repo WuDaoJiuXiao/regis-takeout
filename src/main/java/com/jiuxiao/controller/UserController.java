@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -89,5 +91,17 @@ public class UserController {
             return RespBean.success(user);
         }
         return RespBean.error(SysConstant.MOBILE_USER_LOGIN_ERROR);
+    }
+
+    /**
+     * @return: com.jiuxiao.commons.RespBean<java.lang.String>
+     * @decription 移动端用户注销
+     * @date 2022/8/12 10:30
+     */
+    @PostMapping("/loginout")
+    public RespBean<String> logout(HttpSession session, HttpServletResponse response) throws IOException {
+        session.removeAttribute("user");
+        response.sendRedirect("front/page/login.html");
+        return RespBean.success("注销成功");
     }
 }
